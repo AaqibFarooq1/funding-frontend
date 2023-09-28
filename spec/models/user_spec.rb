@@ -149,7 +149,7 @@ RSpec.describe User, type: :model do
         it 'validates name length between 1 and 80' do
           user.name = ''
           expect(user.valid?).to be_falsey
-          expect(user.errors[:name]).to include("Enter your full name")
+          expect(user.errors[:name]).to include(I18n.t("activerecord.errors.models.user.attributes.name.blank"))
     
           user.name = 'a' * 81
           expect(user.valid?).to be_falsey
@@ -158,9 +158,9 @@ RSpec.describe User, type: :model do
     
         it 'validates presence of dob_day, dob_month, and dob_year' do
           expect(user.valid?).to be_falsey
-          expect(user.errors[:dob_day]).to include("Enter the day on which you were born")
-          expect(user.errors[:dob_month]).to include("Enter the month in which you were born")
-          expect(user.errors[:dob_year]).to include("Enter the year in which you were born")
+          expect(user.errors[:dob_day]).to include(I18n.t("activerecord.errors.models.user.attributes.dob_day.blank"))
+          expect(user.errors[:dob_month]).to include(I18n.t("activerecord.errors.models.user.attributes.dob_month.blank"))
+          expect(user.errors[:dob_year]).to include(I18n.t("activerecord.errors.models.user.attributes.dob_year.blank"))
         end
             
         it 'validates date of birth is a date and in the past' do
@@ -192,22 +192,22 @@ RSpec.describe User, type: :model do
   
       it 'validates presence of line1' do
         expect(user.valid?).to be_falsey
-        expect(user.errors[:line1]).to include("Enter the first line of your address")
+        expect(user.errors[:line1]).to include(I18n.t("activerecord.errors.models.user.attributes.line1.blank"))
       end
   
       it 'validates presence of townCity' do
         expect(user.valid?).to be_falsey
-        expect(user.errors[:townCity]).to include("Enter the town or city where you live")
+        expect(user.errors[:townCity]).to include(I18n.t("activerecord.errors.models.user.attributes.townCity.blank"))
       end
   
       it 'validates presence of county' do
         expect(user.valid?).to be_falsey
-        expect(user.errors[:county]).to include("Enter the county where you live")
+        expect(user.errors[:county]).to include(I18n.t("activerecord.errors.models.user.attributes.county.blank"))
       end
   
       it 'validates presence of postcode' do
         expect(user.valid?).to be_falsey
-        expect(user.errors[:postcode]).to include("Enter the postcode where you live")
+        expect(user.errors[:postcode]).to include(I18n.t("activerecord.errors.models.user.attributes.postcode.blank"))
       end
     end  
 
