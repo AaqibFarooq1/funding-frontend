@@ -1,6 +1,12 @@
 en-GB:
   login_banner:
     important_notice: "Important Notice"
-    if_you_previously_accessed: "If you previously accessed a project through our old application portal, a series of temporary processes are in place while we reconnect organisations to their projects."
-    please_contact_your: "Please contact your Investment Manager if you need to submit a project update, completion report or payment request, and they will be able to guide you through the process."
-    please_only_register: "Please only register on the 'get funding for a heritage project' service if you want to submit a new project enquiry, expression of interest or application for funding."
+    project_enquiries_applications: "Project enquires and applications for National Lottery Grants for Heritage from £10,000–£250,000 under our current Strategic Funding Framework are now closed and will reopen in January with new Heritage 2033 guidance."
+    Please_check: "Please check our website later in the year for updates."
+    applicant_for_the_following: "Applications for the following programmes only will be accepted during this time. You must start the title of your project with the appropriate hashtag: "
+    woodland_investment: "The Woodland Investment Grant programme #COED2"
+    local_places_nature: "Local Places for Nature #NATUR"
+    nature_networks: "Nature Networks #NNF3"
+    facility_for_investment: "The Facility for Investment Ready Nature in Scotland #FIRNS2"
+    heritage_places_strategic: "Heritage Places Strategic Initiative   #HP"
+    application_deadline: "Applications for grants from £3,000–£10,000 will close at 12noon on 1st December."
