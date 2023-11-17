@@ -8,6 +8,16 @@ RSpec.describe DashboardController do
     it 'should render the :show template if all user and organsiation properties ' \
        'are populated' do
 
+      subject.current_user.organisations.first.update(
+        name: 'Test Organisation',
+        line1: '10 Downing Street',
+        line2: 'Westminster',
+        townCity: 'London',
+        county: 'London',
+        postcode: 'SW1A 2AA',
+        org_type: 1
+      )
+
       expect(subject.gon).to receive(:push)
 
       get :show
@@ -20,7 +30,7 @@ RSpec.describe DashboardController do
 
     end
 
-    it 'should render the :show template but not set the @funding_applications instance variable ' \
+    it 'should redirect to :organisation_name template and not set the @funding_applications instance variable ' \
        'if the user does not have an organisation set' do
 
       expect(subject.gon).to receive(:push)
@@ -29,11 +39,12 @@ RSpec.describe DashboardController do
 
       get :show
 
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:show)
-
-      expect(assigns(:projects)).to be_a ActiveRecord::Associations::CollectionProxy
-      expect(assigns(:funding_applications)).to eq(nil)
+      expect(response).to have_http_status(:redirect)
+      expect(response).to redirect_to(
+        organisation_organisation_name_path(
+          organisation_id: subject.current_user.organisations.first.id
+        )
+      )
 
     end
 

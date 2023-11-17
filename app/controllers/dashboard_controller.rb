@@ -97,8 +97,6 @@ class DashboardController < ApplicationController
 
       logger.info "Organisation details complete for #{organisation.id}"
 
-      redirect_to(:authenticated_root)
-
     else
 
       logger.info "Organisation details not complete for #{organisation.id}"
