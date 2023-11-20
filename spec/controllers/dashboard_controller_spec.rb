@@ -68,7 +68,7 @@ RSpec.describe DashboardController do
     'when the current_user has no organisation when import_existing_account disabled' do
 
       subject.current_user.organisations.delete_all
-      get :orchestrate_dashboard_journey
+      get :show
 
       expect(response).to have_http_status(:redirect)
       expect(response).to redirect_to(
@@ -88,7 +88,7 @@ RSpec.describe DashboardController do
             :organisation
           )
         )
-        get :orchestrate_dashboard_journey
+        get :show
 
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(
@@ -109,7 +109,7 @@ RSpec.describe DashboardController do
 
         subject.current_user.organisations.delete_all
 
-        get :orchestrate_dashboard_journey
+        get :show
 
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(
@@ -142,7 +142,7 @@ RSpec.describe DashboardController do
           )
         )
 
-        get :orchestrate_dashboard_journey
+        get :show
 
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(
@@ -157,7 +157,7 @@ RSpec.describe DashboardController do
       end      
     end
 
-    it 'should find the organisation is present and redirect to :start_an_application' do
+    it 'should find the organisation is present and the show the dhasboard' do
 
       subject.current_user.organisations.first.update(
         name: 'Test Organisation',
@@ -171,10 +171,9 @@ RSpec.describe DashboardController do
 
       expect(subject).not_to receive(:create_organisation)
 
-      get :orchestrate_dashboard_journey
+      get :show
 
-      expect(response).to have_http_status(:redirect)
-      expect(response).to redirect_to(:start_an_application)
+      expect(response).to have_http_status(:success)
 
     end
 
