@@ -123,19 +123,33 @@ RSpec.describe NewApplicationController do
       end
 
       it 'should redirect to funding_application_gp_project_start if the application_type is sff_small' do 
+        begin
+          Flipper[:grant_programme_sff_small].enable
+          put :update,
+            params: {
+              new_application: {
+                application_type: 'sff_small'
+              }
+            }
 
+          expect(response).to have_http_status(:redirect)
+          expect(response).to redirect_to(:funding_application_gp_project_start)
+        ensure
+          Flipper[:grant_programme_sff_small].disable
+        end
+
+      end
+
+      it 'should redirect to funding_application_gp_open_medium_start if the application_type is sff_small' do 
         put :update,
-          params: { 
+          params: {
             new_application: {
               application_type: 'sff_small'
-            } 
+            }
           }
 
         expect(response).to have_http_status(:redirect)
-        expect(response).to redirect_to(:funding_application_gp_project_start)
-
+        expect(response).to redirect_to(:funding_application_gp_open_medium_start)
       end
-    
   end
-
 end
