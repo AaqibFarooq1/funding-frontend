@@ -77,16 +77,12 @@ class NewApplicationController < ApplicationController
   def redirect_to_application_start_page(application)
 
     case application.application_type
-
+# change to check if flipper gate is disabled if so redirect to medium journey
     when 'sff_small'
 
       logger.info "Redirecting to SFF Small form for user ID: #{current_user.id}"
 
-      unless Flipper.enabled?(:grant_programme_sff_small)
-        redirect_to :funding_application_gp_open_medium_start
-      else
-        redirect_to :funding_application_gp_project_start
-      end
+      redirect_to :funding_application_gp_project_start
 
     when 'sff_medium'
 

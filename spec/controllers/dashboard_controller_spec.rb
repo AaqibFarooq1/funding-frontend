@@ -93,7 +93,7 @@ RSpec.describe DashboardController do
 
       
       begin
-
+        
         Flipper[:import_existing_account_enabled].enable
 
         subject.current_user.organisations.delete_all
@@ -110,8 +110,8 @@ RSpec.describe DashboardController do
 
       ensure
         Flipper[:import_existing_account_enabled].disable
-      end
-
+      end      
+    
 
     end
 
@@ -119,7 +119,7 @@ RSpec.describe DashboardController do
        'missing detail(s) and so redirect to :postcode_path when import_existing_account enabled' do
 
       begin
-
+        
         Flipper[:import_existing_account_enabled].enable
 
 
