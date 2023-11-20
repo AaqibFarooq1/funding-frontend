@@ -77,7 +77,7 @@ class NewApplicationController < ApplicationController
   def redirect_to_application_start_page(application)
 
     case application.application_type
-
+# change to check if flipper gate is disabled if so redirect to medium journey
     when 'sff_small'
 
       logger.info "Redirecting to SFF Small form for user ID: #{current_user.id}"
