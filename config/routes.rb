@@ -44,6 +44,11 @@ Rails.application.routes.draw do
     get 'existing-details-error', to: 'existing_details_error#show', constraints: lambda { Flipper.enabled?(:import_existing_contact_enabled) }
   end
 
+  # Dashboard section of the service
+  get '/orchestrate-application-journey', to: 'dashboard#orchestrate_application_journey', constraints: lambda { Flipper.enabled?(:new_applications_enabled) }
+  get '/orchestrate-application-journey', to: redirect('/', status: 302), constraints: lambda { !Flipper.enabled?(:new_applications_enabled) }
+  
+
   # Start an Application section of the service
   get 'start-an-application', to: 'new_application#show', constraints: lambda { Flipper.enabled?(:new_applications_enabled) }
   get 'start-an-application', to: redirect('/', status: 302), constraints: lambda { !Flipper.enabled?(:new_applications_enabled) }

@@ -9,8 +9,6 @@ class DashboardController < ApplicationController
 
     if user_details_complete(current_user)
 
-      orchestrate_dashboard_journey
-
       @salesforce_api_instance = get_salesforce_api_instance()
 
       gon.push({ tracking_url_path: '/project-dashboard' })
@@ -87,7 +85,7 @@ class DashboardController < ApplicationController
   # create one if none is present. We also check for the mandatory
   # organisation details to be complete before we can allow a user to
   # create a new application.
-  def orchestrate_dashboard_journey
+  def orchestrate_application_journey
 
     create_organisation_if_none_exists(current_user)
 
@@ -96,6 +94,35 @@ class DashboardController < ApplicationController
     if complete_organisation_details?(organisation)
 
       logger.info "Organisation details complete for #{organisation.id}"
+
+      redirect_to(:start_an_application)
+
+    else
+
+      logger.info "Organisation details not complete for #{organisation.id}"
+
+      if Flipper.enabled?(:import_existing_account_enabled)
+        redirect_to postcode_path 'organisation', organisation.id
+      else
+        redirect_to organisation_organisation_name_path(organisation.id)
+      end
+
+    end
+
+  end
+
+
+  def orchestrate_pre_application_journey
+    
+    create_organisation_if_none_exists(current_user)
+
+    organisation = current_user.organisations.first
+
+    if complete_organisation_details?(organisation)
+
+      logger.info "Organisation details complete for #{organisation.id}"
+
+      redirect_to(:start_an_application)
 
     else
 

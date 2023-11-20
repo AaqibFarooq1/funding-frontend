@@ -64,7 +64,7 @@ class NewApplicationController < ApplicationController
 
     unless user.organisations.any? &&
            helpers.complete_organisation_details?(user.organisations.first)
-      redirect_to :authenticated_root
+      redirect_to :orchestrate_application_journey
     end
 
   end
