@@ -8,10 +8,16 @@
   )
 %>
 
+<span class="govuk-caption-xl">
+
+    <%= t('governing_document.page_heading_caption') %>
+
+  </span>
+
 <%= content_for :secondarycontent do %>
   <%= 
     render partial: "partials/summary/summary_link", locals: {
-      summary_link: organisation_summary_path
+      summary_link: organisation_check_your_answers_path
     } 
   %>
 <% end %>

@@ -9,7 +9,7 @@
 <%= content_for :secondarycontent do %>
   <%= 
     render partial: "partials/summary/summary_link", locals: {
-      summary_link: organisation_summary_path
+      summary_link: organisation_check_your_answers_path
     } 
   %>
 <% end %>
@@ -21,9 +21,18 @@
 } if @organisation.errors.any?
 %>
 
-<h1 class="govuk-heading-xl">
-  <%= t('number_of_employees.page_heading') %> 
-</h1> 
+
+<h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+
+  <span class="govuk-caption-xl">
+
+    <%= t('number_of_employees.page_title') %>
+    
+  </span>
+
+  <%= t('number_of_employees.page_heading') %>
+
+</h1>
 
 <%= form_for @organisation, 
     url: organisation_number_of_employees_path(@organisation), 
